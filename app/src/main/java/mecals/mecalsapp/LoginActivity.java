@@ -1,30 +1,63 @@
 package mecals.mecalsapp;
 
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.app.Activity;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
-//for the QR Code scanner
-import com.google.zxing.Result;
-import me.dm7.barcodescanner.zxing.ZXingScannerView;
+public class LoginActivity extends AppCompatActivity {
 
-public class LoginActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
-
-    private ZXingScannerView mScannerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.qr_scanner);
+        setContentView(R.layout.login_page);
+
+        Button nameBtn = (Button) findViewById(R.id.loginButton);
+        nameBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                EditText nameEntry = (EditText) findViewById(R.id.insertName);
+                String name = nameEntry.getText().toString();
+
+                int counter = 0;
+                //in toate butoane ce au legatura cu tutorialul, la progressStatus am un counter.
+                //indiferent de cate ori e incrementat prin folosirea widgetului, cand ia valoarea 1 e incrementat o data si progressStatus
+                //asta pentru a evita sa incrementam progressStatus prin folosirea repetitiva a aceluiasi widget
+
+                if (name.length() > 0) {
+                    //tutorial explanation, not pop-up. need String.xml !
+                    counter++;
+                    if (counter == 1) {
+                        progressStatus++;
+                    }
+
+
+                    Toast toast = Toast.makeText(getApplicationContext(), "Hi there, " + name + "! " + progressStatus, Toast.LENGTH_SHORT);
+                    toast.show();
+
+                } else {
+
+                    Toast toast1 = Toast.makeText(getApplicationContext(), "Please insert name", Toast.LENGTH_SHORT);
+                    toast1.show();
+                }
+            }
+        });
     }
 
+
+    public void login(View view) {
+
+
+    }
+
+    /*
+    TODO fix spinner
     Spinner spinner = (Spinner) findViewById(R.id.spinner);
     // Create an ArrayAdapter using the string array and a default spinner layout
     ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -47,56 +80,5 @@ public class LoginActivity extends AppCompatActivity implements ZXingScannerView
             // Another interface callback
         }
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    public void onClick(View v)
-    {
-        mScannerView = new ZXingScannerView(this);
-        setContentView(mScannerView);
-        mScannerView.setResultHandler(this);
-        mScannerView.startCamera();
-    }
-
-    @Override
-    public void onPause()
-    {
-        super.onPause();
-        mScannerView.stopCamera();
-    }
-
-    @Override
-    public void handleResult(Result result)
-    {
-        Log.v("handleResult", result.getText());
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Scan Result");
-        builder.setMessage(result.getText());
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-
-        //resume scanning
-        mScannerView.resumeCameraPreview(this);
-    }
+*/
 }
-
