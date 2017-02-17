@@ -1,5 +1,6 @@
 package mecals.mecalsapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -25,60 +26,55 @@ public class LoginActivity extends AppCompatActivity {
                 EditText nameEntry = (EditText) findViewById(R.id.insertName);
                 String name = nameEntry.getText().toString();
 
-                int counter = 0;
-                //in toate butoane ce au legatura cu tutorialul, la progressStatus am un counter.
-                //indiferent de cate ori e incrementat prin folosirea widgetului, cand ia valoarea 1 e incrementat o data si progressStatus
-                //asta pentru a evita sa incrementam progressStatus prin folosirea repetitiva a aceluiasi widget
-
+                //TODO username checking, username not showing , need devC Team's work
                 if (name.length() > 0) {
-                    //tutorial explanation, not pop-up. need String.xml !
-                    counter++;
-                    if (counter == 1) {
-                        progressStatus++;
-                    }
+                    Toast toastYes = Toast.makeText(getApplicationContext(), "Hi there, " + name + "!", Toast.LENGTH_SHORT);
+                    toastYes.show();
 
-
-                    Toast toast = Toast.makeText(getApplicationContext(), "Hi there, " + name + "! " + progressStatus, Toast.LENGTH_SHORT);
-                    toast.show();
+                    Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
+                    startActivity(intent);
 
                 } else {
 
-                    Toast toast1 = Toast.makeText(getApplicationContext(), "Please insert name", Toast.LENGTH_SHORT);
-                    toast1.show();
+                    Toast toastNo = Toast.makeText(getApplicationContext(), "Please insert name !", Toast.LENGTH_SHORT);
+                    toastNo.show();
                 }
+
+
+                EditText passwordEntry = (EditText) findViewById(R.id.insertPass);
+                String pass = passwordEntry.getText().toString();
+                //TODO password checking , need devC Team's work
+
+
+                /*
+                TODO fix spinner
+                Spinner spinner = (Spinner) findViewById(R.id.spinner);
+                // Create an ArrayAdapter using the string array and a default spinner layout
+                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                        R.array.atco_array, android.R.layout.simple_spinner_item);
+                // Specify the layout to use when the list of choices appears
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                // Apply the adapter to the spinner
+                spinner.setAdapter(adapter);
+
+                public class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener {
+
+
+                    public void onItemSelected(AdapterView<?> parent, View view,
+                                               int pos, long id) {
+                        // An item was selected. You can retrieve the selected item using
+                        // parent.getItemAtPosition(pos)
+                    }
+
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        // Another interface callback
+                    }
+                }
+                */
+
             }
         });
     }
 
 
-    public void login(View view) {
-
-
-    }
-
-    /*
-    TODO fix spinner
-    Spinner spinner = (Spinner) findViewById(R.id.spinner);
-    // Create an ArrayAdapter using the string array and a default spinner layout
-    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-            R.array.atco_array, android.R.layout.simple_spinner_item);
-    // Specify the layout to use when the list of choices appears
-    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    // Apply the adapter to the spinner
-    spinner.setAdapter(adapter);
-
-    public class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener {
-
-
-        public void onItemSelected(AdapterView<?> parent, View view,
-                                   int pos, long id) {
-            // An item was selected. You can retrieve the selected item using
-            // parent.getItemAtPosition(pos)
-        }
-
-        public void onNothingSelected(AdapterView<?> parent) {
-            // Another interface callback
-        }
-    }
-*/
 }
