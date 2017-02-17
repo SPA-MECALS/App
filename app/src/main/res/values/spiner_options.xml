@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="atco_array">
+        <item>ATCO</item>
+        <item>ATCO Trainer</item>
+        <item>ATCO Trainee</item>
+        <item>ATCO Meditator</item>
+    </string-array>
+</resources>
