@@ -1,21 +1,19 @@
 package mecals.mecalsapp;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.app.Activity;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+//for the QR Code scanner
 import com.google.zxing.Result;
-
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class LoginActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
@@ -25,17 +23,6 @@ public class LoginActivity extends AppCompatActivity implements ZXingScannerView
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.qr_scanner);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 
     Spinner spinner = (Spinner) findViewById(R.id.spinner);
@@ -47,7 +34,7 @@ public class LoginActivity extends AppCompatActivity implements ZXingScannerView
     // Apply the adapter to the spinner
     spinner.setAdapter(adapter);
 
-    public class SpinnerActivity extends Activity implements OnItemSelectedListener {
+    public class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener {
 
 
         public void onItemSelected(AdapterView<?> parent, View view,
