@@ -1,6 +1,7 @@
 package mecals.mecalsapp;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -24,7 +25,9 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 EditText nameEntry = (EditText) findViewById(R.id.insertName);
+                nameEntry.setTextColor(Color.BLACK);
                 String name = nameEntry.getText().toString();
+
 
                 //TODO username checking, username not showing , need devC Team's work
                 if (name.length() > 0) {
@@ -42,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                 EditText passwordEntry = (EditText) findViewById(R.id.insertPass);
+                passwordEntry.setTextColor(Color.BLACK);
                 String pass = passwordEntry.getText().toString();
                 //TODO password checking , need devC Team's work
 

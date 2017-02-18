@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:text="Time : "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="40dp"
+        android:id="@+id/timeTag" />
+
+    <TextView
+        android:text="Workstation : "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:id="@+id/workstationNameTag"
+        android:layout_below="@+id/timeTag"
+        android:layout_alignStart="@+id/timeTag" />
+
+    <TextView
+        android:text="Shift : "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:id="@+id/shiftNameTag"
+        android:layout_below="@+id/workstationNameTag"
+        android:layout_alignStart="@+id/workstationNameTag" />
+
+    <TextView
+        android:text="Supervizor : "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:id="@+id/supervizorNameTag"
+        android:layout_below="@+id/shiftNameTag"
+        android:layout_alignStart="@+id/shiftNameTag" />
+
+    <TextView
+        android:text="Partner : "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:id="@+id/partnerNameTag"
+        android:layout_below="@+id/supervizorNameTag"
+        android:layout_alignStart="@+id/supervizorNameTag" />
+
+    <TextView
+        android:text="Change role : "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/partnerNameTag"
+        android:layout_alignStart="@+id/timeTag"
+        android:layout_marginTop="30dp"
+        android:id="@+id/changeRoleTag" />
+
+    <TextView
+        android:text="Start_Shift"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/startTimeText"
+        android:layout_marginTop="40dp"
+        android:layout_toEndOf="@+id/timeTag" />
+
+    <TextView
+        android:text="-"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/startTimeText"
+        android:layout_toEndOf="@+id/startTimeText"
+        android:layout_marginStart="5dp"
+        android:id="@+id/separate" />
+
+    <TextView
+        android:text="End_Shift"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/startTimeText"
+        android:layout_toEndOf="@+id/separate"
+        android:layout_marginStart="5dp"
+        android:id="@+id/stopTimeText" />
+
+    <Chronometer
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chronometer"
+        android:layout_marginStart="15dp"
+        android:layout_alignBottom="@+id/stopTimeText"
+        android:layout_toEndOf="@+id/stopTimeText"/>
+
+    <TextView
+        android:text="C13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/workstationNameTag"
+        android:layout_toEndOf="@+id/workstationNameTag"
+        android:id="@+id/workstationName" />
+
+    <TextView
+        android:text="2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/supervizorNameTag"
+        android:layout_toEndOf="@+id/shiftNameTag"
+        android:id="@+id/shiftName" />
+
+    <TextView
+        android:text="Dick Weiner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/supervizorNameTag"
+        android:layout_toEndOf="@+id/supervizorNameTag"
+        android:id="@+id/supervizorName" />
+
+    <TextView
+        android:text="Criss P. Bacon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/partnerNameTag"
+        android:layout_toEndOf="@+id/partnerNameTag"
+        android:id="@+id/textView5" />
+
+    <Spinner
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/changeRoleTag"
+        android:layout_toEndOf="@+id/changeRoleTag"
+        android:id="@+id/spinner2" />
+
+    <ToggleButton
+        android:text="ToggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/signoutButton"
+        android:layout_below="@+id/spinner2"
+        android:id="@+id/toggleButton"
+        android:onClick="onClick"
+        android:textOff="Break"
+        android:textOn="Resume"
+        android:layout_marginTop="30dp"/>
+    <!--android:layout_above="@+id/signoutButton"-->
+
+    <Button
+        android:text="Sign out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="onClick"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/toggleButton"
+        android:id="@+id/signoutButton" />
+
+
+</RelativeLayout>

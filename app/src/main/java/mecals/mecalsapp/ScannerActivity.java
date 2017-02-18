@@ -1,7 +1,11 @@
 package mecals.mecalsapp;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -14,14 +18,20 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 public class ScannerActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
 
-    //TODO checker for the camera permission
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.qr_scanner);
+
+        int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
+        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA},1);
+        }
     }
 
     private ZXingScannerView m_scannerView;
+
+
 
     public void onClick(View v) {
         m_scannerView = new ZXingScannerView(this);
