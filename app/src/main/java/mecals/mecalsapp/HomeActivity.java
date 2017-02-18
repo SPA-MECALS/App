@@ -13,5 +13,4 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.home_page);
     }
     //TODO get timer working, as well as the signout and logout buttons
-
 }

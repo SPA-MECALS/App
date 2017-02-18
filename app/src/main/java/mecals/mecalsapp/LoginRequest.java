@@ -19,7 +19,6 @@ public class LoginRequest extends GetRequest {
             //TODO Handle connection error !
             return;
         }
-        TextView txt = (TextView) m_context.findViewById(R.id.label_test);
-        txt.setText("Response " + response.getStatus() + "\n" + response.getContent());
+        //TODO Update and change view according to response from server
     }
 }
