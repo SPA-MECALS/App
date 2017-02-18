@@ -1,12 +1,8 @@
 package mecals.mecalsapp;
 
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -23,32 +19,16 @@ public class LoginActivity extends AppCompatActivity {
         nameBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String login = ((EditText) findViewById(R.id.insertName)).getText().toString();
+                String password = ((EditText) findViewById(R.id.insertPass)).getText().toString();
 
-                EditText nameEntry = (EditText) findViewById(R.id.insertName);
-                nameEntry.setTextColor(Color.BLACK);
-                String name = nameEntry.getText().toString();
-
-
-                //TODO username checking, username not showing , need devC Team's work
-                if (name.length() > 0) {
-                    Toast toastYes = Toast.makeText(getApplicationContext(), "Hi there, " + name + "!", Toast.LENGTH_SHORT);
-                    toastYes.show();
-
-                    Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
-                    startActivity(intent);
-
-                } else {
-
-                    Toast toastNo = Toast.makeText(getApplicationContext(), "Please insert name !", Toast.LENGTH_SHORT);
-                    toastNo.show();
+                if (login.length() > 0 && password.length() > 0) {
+                    API.getInstance().login(LoginActivity.this, login, password);
+                    //TODO Start spinner here
                 }
-
-
-                EditText passwordEntry = (EditText) findViewById(R.id.insertPass);
-                passwordEntry.setTextColor(Color.BLACK);
-                String pass = passwordEntry.getText().toString();
-                //TODO password checking , need devC Team's work
-
+                else {
+                    Toast.makeText(getApplicationContext(), Constants.ERR_NO_CREDENTIALS, Toast.LENGTH_SHORT).show();
+                }
 
                 /*
                 TODO fix spinner

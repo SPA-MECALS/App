@@ -16,11 +16,11 @@ import java.net.URL;
 
 public class HttpAsync extends AsyncTask<HttpRequest, Void, HttpResponse> {
 
-    protected Activity m_context;
+    protected Activity m_activity;
     private String m_type;
 
-    public HttpAsync(Activity context, String type) {
-        m_context = context;
+    public HttpAsync(Activity activity, String type) {
+        m_activity = activity;
         m_type = type;
     }
 
@@ -33,10 +33,15 @@ public class HttpAsync extends AsyncTask<HttpRequest, Void, HttpResponse> {
     protected HttpResponse createResponse(HttpURLConnection httpConnection) throws IOException {
         String line;
         String content = "";
-        BufferedReader reader = new BufferedReader(new InputStreamReader(httpConnection.getInputStream(), "UTF-8"));
 
-        while ((line = reader.readLine()) != null)
-            content += line;
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(httpConnection.getInputStream(), "UTF-8"));
+            while ((line = reader.readLine()) != null)
+                content += line;
+        }
+        catch (Exception e) {
+            content = null;
+        }
         return (new HttpResponse(httpConnection.getResponseCode(), content));
     }
 
@@ -48,7 +53,7 @@ public class HttpAsync extends AsyncTask<HttpRequest, Void, HttpResponse> {
             HttpURLConnection httpConnection = this.createConnection(request.getUrl() + "?" + request.encodedParameters());
             return (this.createResponse(httpConnection));
         }
-        catch (Exception e){
+        catch (Exception e) {
             Log.e("HttpAsync", e.getMessage(), e.getCause());
             return (null);
         }
