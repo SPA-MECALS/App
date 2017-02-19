@@ -12,8 +12,8 @@ import java.net.HttpURLConnection;
 
 public class PostRequest extends HttpAsync {
 
-    public PostRequest(Activity activity) {
-       super(activity, "POST");
+    public PostRequest(IRequestHandler handler) {
+       super(handler, "POST");
     }
 
     @Override

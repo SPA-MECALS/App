@@ -1,14 +1,14 @@
 package mecals.mecalsapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements IRequestHandler {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,36 +29,27 @@ public class LoginActivity extends AppCompatActivity {
                 else {
                     Toast.makeText(getApplicationContext(), Constants.ERR_NO_CREDENTIALS, Toast.LENGTH_SHORT).show();
                 }
-
-                /*
-                TODO fix spinner
-                Spinner spinner = (Spinner) findViewById(R.id.spinner);
-                // Create an ArrayAdapter using the string array and a default spinner layout
-                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                        R.array.atco_array, android.R.layout.simple_spinner_item);
-                // Specify the layout to use when the list of choices appears
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                // Apply the adapter to the spinner
-                spinner.setAdapter(adapter);
-
-                public class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener {
-
-
-                    public void onItemSelected(AdapterView<?> parent, View view,
-                                               int pos, long id) {
-                        // An item was selected. You can retrieve the selected item using
-                        // parent.getItemAtPosition(pos)
-                    }
-
-                    public void onNothingSelected(AdapterView<?> parent) {
-                        // Another interface callback
-                    }
-                }
-                */
-
             }
         });
     }
 
-
+    @Override
+    public void onRequest(HttpResponse response) {
+        if (response == null) {
+            Toast.makeText(this.getApplicationContext(), Constants.ERR_SERVER_UNREACHABLE, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        switch (response.getStatus()) {
+            case 200:
+                Intent intent = new Intent(this.getApplicationContext(), HomeActivity.class);
+                this.startActivity(intent);
+                break;
+            case 401:
+                Toast.makeText(this.getApplicationContext(), Constants.ERR_INVALID_CREDENTIALS, Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                Toast.makeText(this.getApplicationContext(), Constants.ERR_UNEXPECTED_RESPONSE, Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
 }

@@ -8,7 +8,7 @@ import android.app.Activity;
 
 public class GetRequest extends HttpAsync {
 
-    public GetRequest(Activity activity) {
-        super(activity, "GET");
+    public GetRequest(IRequestHandler handler) {
+        super(handler, "GET");
     }
 }

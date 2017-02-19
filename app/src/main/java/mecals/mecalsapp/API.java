@@ -1,7 +1,5 @@
 package mecals.mecalsapp;
 
-import android.app.Activity;
-
 import java.util.HashMap;
 
 /**
@@ -18,8 +16,9 @@ public class API {
     }
 
     public static API getInstance() {
-        if (m_instance == null)
+        if (m_instance == null) {
             m_instance = new API();
+        }
         return (m_instance);
     }
 
@@ -27,23 +26,27 @@ public class API {
         m_url = url;
     }
 
-    public void login(Activity activity, String login, String password) {
+    public String getUrl() {
+        return (m_url);
+    }
+
+    public void login(IRequestHandler handler, String login, String password) {
         HashMap<String, String> parameters = new HashMap<>();
 
         if (m_url == null)
             throw new NullPointerException();
         parameters.put("login", login);
-        parameters.put("password", password);
-        new LoginRequest(activity).execute(new HttpRequest(m_url + "/login", parameters));
+        parameters.put("password", password); //TODO Encrypt password
+        new GetRequest(handler).execute(new HttpRequest(m_url + "/login", parameters));
     }
 
-    public void logout(Activity activity) {
+    public void logout(IRequestHandler handler) {
         if (m_url == null)
             throw new NullPointerException();
         //TODO
     }
 
-    public void changeRole(Activity activity) {
+    public void changeRole(IRequestHandler handler) {
         if (m_url == null)
             throw new NullPointerException();
         //TODO

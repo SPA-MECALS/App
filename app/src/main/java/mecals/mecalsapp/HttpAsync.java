@@ -3,6 +3,7 @@ package mecals.mecalsapp;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,11 +17,11 @@ import java.net.URL;
 
 public class HttpAsync extends AsyncTask<HttpRequest, Void, HttpResponse> {
 
-    protected Activity m_activity;
+    protected IRequestHandler m_handler;
     private String m_type;
 
-    public HttpAsync(Activity activity, String type) {
-        m_activity = activity;
+    public HttpAsync(IRequestHandler handler, String type) {
+        m_handler = handler;
         m_type = type;
     }
 
@@ -40,7 +41,7 @@ public class HttpAsync extends AsyncTask<HttpRequest, Void, HttpResponse> {
                 content += line;
         }
         catch (Exception e) {
-            content = null;
+            content = "";
         }
         return (new HttpResponse(httpConnection.getResponseCode(), content));
     }
@@ -51,11 +52,17 @@ public class HttpAsync extends AsyncTask<HttpRequest, Void, HttpResponse> {
 
         try {
             HttpURLConnection httpConnection = this.createConnection(request.getUrl() + "?" + request.encodedParameters());
-            return (this.createResponse(httpConnection));
+            HttpResponse r = this.createResponse(httpConnection);
+            return (r);
         }
         catch (Exception e) {
             Log.e("HttpAsync", e.getMessage(), e.getCause());
             return (null);
         }
+    }
+
+    @Override
+    protected void onPostExecute(HttpResponse response) {
+        m_handler.onRequest(response);
     }
 }
