@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity implements IRequestHandler 
     }
 
     @Override
-    public void onRequest(HttpResponse response) {
+    public void onRequest(HttpResponse response, int identifier) {
         if (response == null) {
             Toast.makeText(this.getApplicationContext(), Constants.ERR_SERVER_UNREACHABLE, Toast.LENGTH_SHORT).show();
             return;

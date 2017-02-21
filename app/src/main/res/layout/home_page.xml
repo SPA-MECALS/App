@@ -137,7 +137,7 @@
         android:layout_alignEnd="@+id/signoutButton"
         android:layout_below="@+id/spinner2"
         android:id="@+id/toggleButton"
-        android:onClick="onClick"
+        android:onClick="onBreak"
         android:textOff="Break"
         android:textOn="Resume"
         android:layout_marginTop="30dp"/>
@@ -149,7 +149,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:onClick="onClick"
+        android:onClick="onSignOut"
         android:layout_marginTop="30dp"
         android:layout_below="@+id/toggleButton"
         android:id="@+id/signoutButton" />

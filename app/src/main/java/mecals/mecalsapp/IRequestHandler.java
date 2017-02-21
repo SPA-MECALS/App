@@ -5,5 +5,5 @@ package mecals.mecalsapp;
  */
 
 public interface IRequestHandler {
-    void onRequest(HttpResponse response);
+    void onRequest(HttpResponse response, int identifier);
 }

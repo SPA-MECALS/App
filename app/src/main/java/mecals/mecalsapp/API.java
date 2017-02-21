@@ -37,13 +37,13 @@ public class API {
             throw new NullPointerException();
         parameters.put("login", login);
         parameters.put("password", password); //TODO Encrypt password
-        new GetRequest(handler).execute(new HttpRequest(m_url + "/login", parameters));
+        new GetRequest(handler, Route.LOGIN).execute(new HttpRequest(m_url + "/login", parameters));
     }
 
     public void logout(IRequestHandler handler) {
         if (m_url == null)
             throw new NullPointerException();
-        //TODO
+        new GetRequest(handler, Route.LOGOUT).execute(new HttpRequest(m_url + "/logout"));
     }
 
     public void changeRole(IRequestHandler handler) {

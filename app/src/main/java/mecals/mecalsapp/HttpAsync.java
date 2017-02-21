@@ -1,9 +1,7 @@
 package mecals.mecalsapp;
 
-import android.app.Activity;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,10 +16,12 @@ import java.net.URL;
 public class HttpAsync extends AsyncTask<HttpRequest, Void, HttpResponse> {
 
     protected IRequestHandler m_handler;
+    private int m_identifier;
     private String m_type;
 
-    public HttpAsync(IRequestHandler handler, String type) {
+    public HttpAsync(IRequestHandler handler, int identifier, String type) {
         m_handler = handler;
+        m_identifier = identifier;
         m_type = type;
     }
 
@@ -63,6 +63,6 @@ public class HttpAsync extends AsyncTask<HttpRequest, Void, HttpResponse> {
 
     @Override
     protected void onPostExecute(HttpResponse response) {
-        m_handler.onRequest(response);
+        m_handler.onRequest(response, m_identifier);
     }
 }
