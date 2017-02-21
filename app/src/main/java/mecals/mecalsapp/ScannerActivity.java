@@ -31,8 +31,6 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
 
     private ZXingScannerView m_scannerView;
 
-
-
     public void onClick(View v) {
         m_scannerView = new ZXingScannerView(this);
         setContentView(m_scannerView);

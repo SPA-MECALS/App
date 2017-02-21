@@ -12,12 +12,33 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class LoginActivity extends AppCompatActivity {
+
+public class LoginActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+    ArrayAdapter<CharSequence> adapter;
+    Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_page);
+
+        //TODO fix spinner bug which doesn't show default or choice. It shows the options you have when you click the arrow , though
+        spinner = (Spinner)findViewById(R.id.spinner1);
+
+        //Alternative versions for the adapter, to fix the spinner. They did not work
+        /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(LoginActivity.this,
+                android.R.layout.simple_spinner_item,R.id.spinner1); */
+
+        //adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, R.array.atco_array);
+
+        adapter = ArrayAdapter.createFromResource(getApplicationContext(),
+                R.array.atco_array, android.R.layout.simple_spinner_item);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+        spinner.setSelection(0,true);
 
         Button nameBtn = (Button) findViewById(R.id.loginButton);
         nameBtn.setOnClickListener(new View.OnClickListener() {
@@ -29,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
                 String name = nameEntry.getText().toString();
 
 
-                //TODO username checking, username not showing , need devC Team's work
+                //TODO username checking , need devC Team's work
                 if (name.length() > 0) {
                     Toast toastYes = Toast.makeText(getApplicationContext(), "Hi there, " + name + "!", Toast.LENGTH_SHORT);
                     toastYes.show();
@@ -39,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 } else {
 
-                    Toast toastNo = Toast.makeText(getApplicationContext(), "Please insert name !", Toast.LENGTH_SHORT);
+                    Toast toastNo = Toast.makeText(getApplicationContext(), "Please insert your name !", Toast.LENGTH_SHORT);
                     toastNo.show();
                 }
 
@@ -50,34 +71,27 @@ public class LoginActivity extends AppCompatActivity {
                 //TODO password checking , need devC Team's work
 
 
-                /*
-                TODO fix spinner
-                Spinner spinner = (Spinner) findViewById(R.id.spinner);
-                // Create an ArrayAdapter using the string array and a default spinner layout
-                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                        R.array.atco_array, android.R.layout.simple_spinner_item);
-                // Specify the layout to use when the list of choices appears
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                // Apply the adapter to the spinner
-                spinner.setAdapter(adapter);
-
-                public class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener {
-
-
-                    public void onItemSelected(AdapterView<?> parent, View view,
-                                               int pos, long id) {
-                        // An item was selected. You can retrieve the selected item using
-                        // parent.getItemAtPosition(pos)
-                    }
-
-                    public void onNothingSelected(AdapterView<?> parent) {
-                        // Another interface callback
-                    }
-                }
-                */
-
             }
         });
+
+    }
+
+    public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
+        // An item was selected. You can retrieve the selected item using
+        // parent.getItemAtPosition(pos)
+
+        //here however, we just set the spinner value to the one selected
+        String role = spinner.getSelectedItem().toString();
+        int spinnerPosition = adapter.getPosition(role);
+        spinner.setSelection(spinnerPosition);
+        Toast toastNo = Toast.makeText(getApplicationContext(), "Your role is " + role, Toast.LENGTH_SHORT);
+        toastNo.show();
+        }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+        // Another interface callback
+        spinner.setSelection(0,true); //set the default value
     }
 
 

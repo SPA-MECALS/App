@@ -30,20 +30,12 @@
         android:layout_below="@+id/passTag"
         android:layout_alignStart="@+id/atcoNameTag"/>
 
-    <Spinner
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinner"
-        android:layout_alignTop="@+id/roleNameTag"
-        android:layout_toEndOf="@+id/roleNameTag"
-        android:layout_alignStart="@+id/insertPass"/>
-
     <Button
         android:text="Login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/loginButton"
-        android:onClick="onClick"
+        android:onClick="onItemSelectedListener"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="35dp" />
@@ -53,6 +45,7 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
+        android:textColor = "#000000"
         android:id="@+id/insertPass"
         android:hint="password"
         android:cursorVisible="true"
@@ -65,11 +58,22 @@
         android:layout_height="wrap_content"
         android:inputType="text"
         android:ems="10"
+        android:textColor = "#000000"
         android:id="@+id/insertName"
         android:hint="username"
         android:cursorVisible="true"
         android:layout_above="@+id/insertPass"
         android:layout_alignStart="@+id/insertPass" />
+
+    <Spinner
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner1"
+        android:ems="10"
+        android:textColor = "#000000"
+        android:layout_alignStart="@+id/insertPass"
+        android:layout_alignBottom="@+id/roleNameTag"
+        android:layout_toEndOf="@+id/roleNameTag" />
 
 
 </RelativeLayout>
