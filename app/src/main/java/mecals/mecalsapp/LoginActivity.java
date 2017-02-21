@@ -11,10 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+import mecals.mecalsapp.IRequestHandler;
 
-public class LoginActivity extends AppCompatActivity implements IRequestHandler {
-
-public class LoginActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class LoginActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, IRequestHandler {
 
     ArrayAdapter<CharSequence> adapter;
     Spinner spinner;
@@ -51,6 +50,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                 if (login.length() > 0 && password.length() > 0) {
                     API.getInstance().login(LoginActivity.this, login, password);
                     //TODO Start spinner here
+                }
                 EditText nameEntry = (EditText) findViewById(R.id.insertName);
                 nameEntry.setTextColor(Color.BLACK);
                 String name = nameEntry.getText().toString();
@@ -98,14 +98,13 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
     public void onNothingSelected(AdapterView<?> parent) {
         // Another interface callback
         spinner.setSelection(0,true); //set the default value
-                else {
-                    Toast.makeText(getApplicationContext(), Constants.ERR_NO_CREDENTIALS, Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        /*else {
+            Toast.makeText(getApplicationContext(), Constants.ERR_NO_CREDENTIALS, Toast.LENGTH_SHORT).show();
+        }*/
     }
 
-    @Override
+
+    //@Override
     public void onRequest(HttpResponse response, int identifier) {
         if (response == null) {
             Toast.makeText(this.getApplicationContext(), Constants.ERR_SERVER_UNREACHABLE, Toast.LENGTH_SHORT).show();
