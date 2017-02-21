@@ -10,22 +10,21 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-
-//for the QR Code scanner
+import android.widget.Toast;
 import com.google.zxing.Result;
+import java.net.URI;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class ScannerActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
+    private ZXingScannerView m_scannerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.qr_scanner);
-
-        int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
-        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA},1);
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 1);
         }
     }
 
@@ -33,7 +32,7 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
 
     public void onClick(View v) {
         m_scannerView = new ZXingScannerView(this);
-        setContentView(m_scannerView);
+        this.setContentView(m_scannerView);
         m_scannerView.setResultHandler(this);
         m_scannerView.startCamera();
     }
@@ -52,11 +51,23 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         builder.setMessage(result.getText());
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+        String url = result.getText();
 
         Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
         startActivity(intent);
 
         //resume scanning
+        try {
+            URI.create(url);
+        }
+        catch (IllegalArgumentException e) {
+            Toast.makeText(this.getApplicationContext(), Constants.ERR_NO_URL, Toast.LENGTH_SHORT).show();
+            m_scannerView.resumeCameraPreview(this);
+            return;
+        }
+        API.getInstance().setUrl(url);
+        Intent intent = new Intent(this.getApplicationContext(), LoginActivity.class);
+        this.startActivity(intent);
         m_scannerView.resumeCameraPreview(this);
     }
 }
