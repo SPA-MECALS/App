@@ -11,7 +11,7 @@ import android.widget.ToggleButton;
 
 public class HomeActivity extends AppCompatActivity implements IRequestHandler {
 
-    Chronometer m_chronometer;
+    private Chronometer m_chronometer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +22,7 @@ public class HomeActivity extends AppCompatActivity implements IRequestHandler {
 
         toggleAlarm.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                //TODO fix the chronometer. Itcrashes the app if we hit the Break Toggle Button for now
+                //TODO fix the chronometer. It crashes the app if we hit the Break Toggle Button for now
                 if (isChecked) {
                     m_chronometer.start();
                 }
@@ -33,7 +33,7 @@ public class HomeActivity extends AppCompatActivity implements IRequestHandler {
         });
     }
 
-    public void onSignOut(View view) {
+    public void onLogout(View view) {
         API.getInstance().logout(this);
     }
 

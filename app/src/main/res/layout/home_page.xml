@@ -134,7 +134,7 @@
         android:text="ToggleButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/signoutButton"
+        android:layout_alignEnd="@+id/logoutButton"
         android:layout_below="@+id/spinner2"
         android:id="@+id/toggleButton1"
         android:onClick="onBreak"
@@ -144,15 +144,15 @@
     <!--android:layout_above="@+id/signoutButton"-->
 
     <Button
-        android:text="Sign out"
+        android:text="Logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:onClick="onSignOut"
+        android:onClick="onLogout"
         android:layout_marginTop="30dp"
         android:layout_below="@+id/toggleButton1"
-        android:id="@+id/signoutButton" />
+        android:id="@+id/logoutButton" />
 
 
 </RelativeLayout>
