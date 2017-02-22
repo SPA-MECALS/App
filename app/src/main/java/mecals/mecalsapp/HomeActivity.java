@@ -22,6 +22,7 @@ public class HomeActivity extends AppCompatActivity implements IRequestHandler {
         m_chronometer = (Chronometer) findViewById(R.id.chronometer1);
         ToggleButton toggleAlarm = (ToggleButton) findViewById(R.id.toggleButton1);
 
+        m_chronometer.start();
         toggleAlarm.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (!isChecked) {
