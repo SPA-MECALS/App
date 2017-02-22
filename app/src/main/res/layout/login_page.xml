@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    tools:background="@drawable/bc">
 
     <TextView
         android:text="Name : "
@@ -10,7 +12,9 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="30dp"
         android:layout_marginTop="40dp"
-        android:id="@+id/atcoNameTag" />
+        android:id="@+id/atcoNameTag"
+        android:textColor="@android:color/background_light"
+        android:textSize="20sp"/>
 
     <TextView
         android:text="Password : "
@@ -19,17 +23,9 @@
         android:layout_below="@+id/atcoNameTag"
         android:layout_marginTop="30dp"
         android:id="@+id/passTag"
-        android:layout_alignStart="@+id/atcoNameTag"/>
-
-    <Button
-        android:text="Sign-in"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/loginButton"
-        android:onClick="onItemSelectedListener"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="35dp" />
+        android:layout_alignStart="@+id/atcoNameTag"
+        android:textColor="@android:color/background_light"
+        android:textSize="20sp"/>
 
     <EditText
         android:layout_width="200dp"
@@ -53,7 +49,20 @@
         android:id="@+id/insertName"
         android:hint="username"
         android:cursorVisible="true"
-        android:layout_above="@+id/insertPass"
+        android:layout_alignBaseline="@+id/atcoNameTag"
+        android:layout_alignBottom="@+id/atcoNameTag"
         android:layout_alignStart="@+id/insertPass" />
+
+    <Button
+        android:text="Sign-in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/loginButton"
+        android:onClick="onItemSelectedListener"
+        android:layout_marginBottom="130dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/background_light"
+        android:background="@color/colorPrimary" />
 
 </RelativeLayout>
