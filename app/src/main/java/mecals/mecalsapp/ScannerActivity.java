@@ -15,7 +15,7 @@ import com.google.zxing.Result;
 import java.net.URI;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
-public class ScannerActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
+public class ScannerActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler, IRequestHandler {
 
     private ZXingScannerView m_scannerView;
 
@@ -54,9 +54,28 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
             return;
         }
         API.getInstance().setUrl(url);
-        Intent intent = new Intent(this.getApplicationContext(), LoginActivity.class);
-        this.startActivity(intent);
+        if (API.getInstance().hasToken(this.getApplicationContext())) {
+            API.getInstance().login(this);
+        }
+        else {
+            Intent intent = new Intent(this.getApplicationContext(), LoginActivity.class);
+            this.startActivity(intent);
+        }
         m_scannerView.resumeCameraPreview(this);
+    }
+
+    public void onRequest(HttpResponse response, int identifier) {
+        if (response == null) {
+            Toast.makeText(this.getApplicationContext(), Constants.ERR_SERVER_UNREACHABLE, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (response.getStatus() == 200) {
+            Intent intent = new Intent(this.getApplicationContext(), HomeActivity.class);
+            this.startActivity(intent);
+        }
+        else {
+            Toast.makeText(this.getApplicationContext(), Constants.ERR_UNEXPECTED_RESPONSE, Toast.LENGTH_SHORT).show();
+        }
     }
 }
 

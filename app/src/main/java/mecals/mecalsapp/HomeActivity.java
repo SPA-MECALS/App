@@ -11,6 +11,7 @@ import android.widget.CompoundButton;
 import android.widget.ToggleButton;
 
 public class HomeActivity extends AppCompatActivity implements IRequestHandler {
+
     Chronometer m_chronometer;
     long        m_lastPause = 0;
 
@@ -36,7 +37,7 @@ public class HomeActivity extends AppCompatActivity implements IRequestHandler {
         });
     }
 
-    public void onSignOut(View view) {
+    public void onLogout(View view) {
         API.getInstance().logout(this);
     }
 

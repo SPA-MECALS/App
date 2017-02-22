@@ -5,7 +5,7 @@ package mecals.mecalsapp;
  */
 
 public interface Route {
-    int LOGIN = 0;
-    int LOGOUT = 1;
-    int CHANGE_ROLE = 2;
+    int SIGN_IN = 0;
+    int LOGIN = 1;
+    int LOGOUT = 2;
 }
