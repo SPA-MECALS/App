@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@drawable/bc">
 
     <TextView
         android:text="Time : "
@@ -10,7 +11,8 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="30dp"
         android:layout_marginTop="40dp"
-        android:id="@+id/timeTag" />
+        android:id="@+id/timeTag"
+        android:textColor="@android:color/background_light" />
 
     <TextView
         android:text="Workstation : "
@@ -19,7 +21,8 @@
         android:layout_marginTop="30dp"
         android:id="@+id/workstationNameTag"
         android:layout_below="@+id/timeTag"
-        android:layout_alignStart="@+id/timeTag" />
+        android:layout_alignStart="@+id/timeTag"
+        android:textColor="@android:color/background_light" />
 
     <TextView
         android:text="Shift : "
@@ -28,7 +31,8 @@
         android:layout_marginTop="30dp"
         android:id="@+id/shiftNameTag"
         android:layout_below="@+id/workstationNameTag"
-        android:layout_alignStart="@+id/workstationNameTag" />
+        android:layout_alignStart="@+id/workstationNameTag"
+        android:textColor="@android:color/background_light" />
 
     <TextView
         android:text="Supervizor : "
@@ -37,7 +41,8 @@
         android:layout_marginTop="30dp"
         android:id="@+id/supervizorNameTag"
         android:layout_below="@+id/shiftNameTag"
-        android:layout_alignStart="@+id/shiftNameTag" />
+        android:layout_alignStart="@+id/shiftNameTag"
+        android:textColor="@android:color/background_light" />
 
     <TextView
         android:text="Partner : "
@@ -46,7 +51,8 @@
         android:layout_marginTop="30dp"
         android:id="@+id/partnerNameTag"
         android:layout_below="@+id/supervizorNameTag"
-        android:layout_alignStart="@+id/supervizorNameTag" />
+        android:layout_alignStart="@+id/supervizorNameTag"
+        android:textColor="@android:color/background_light" />
 
     <TextView
         android:text="Change role : "
@@ -55,7 +61,8 @@
         android:layout_below="@+id/partnerNameTag"
         android:layout_alignStart="@+id/timeTag"
         android:layout_marginTop="30dp"
-        android:id="@+id/changeRoleTag" />
+        android:id="@+id/changeRoleTag"
+        android:textColor="@android:color/background_light" />
 
     <TextView
         android:text="Start_Shift"
@@ -130,29 +137,33 @@
         android:layout_toEndOf="@+id/changeRoleTag"
         android:id="@+id/spinner2" />
 
+    <!--android:layout_above="@+id/signoutButton"-->
+
     <ToggleButton
         android:text="ToggleButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/signoutButton"
-        android:layout_below="@+id/spinner2"
         android:id="@+id/toggleButton1"
         android:onClick="onBreak"
         android:textOff="Break"
         android:textOn="Resume"
-        android:layout_marginTop="30dp"/>
-    <!--android:layout_above="@+id/signoutButton"-->
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/spinner2"
+        android:layout_alignStart="@+id/signoutButton"
+        android:textColor="@android:color/background_light"
+        android:background="@color/colorPrimary" />
 
     <Button
         android:text="Sign out"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:onClick="onSignOut"
         android:layout_marginTop="30dp"
+        android:id="@+id/signoutButton"
+        android:textColor="@android:color/background_light"
         android:layout_below="@+id/toggleButton1"
-        android:id="@+id/signoutButton" />
+        android:layout_alignEnd="@+id/chronometer1"
+        android:background="@color/colorPrimary" />
 
 
 </RelativeLayout>
