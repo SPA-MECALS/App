@@ -1,6 +1,7 @@
 package mecals.mecalsapp;
 
 import android.content.Intent;
+import android.os.SystemClock;
 import android.view.View;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,8 +11,8 @@ import android.widget.CompoundButton;
 import android.widget.ToggleButton;
 
 public class HomeActivity extends AppCompatActivity implements IRequestHandler {
-
     Chronometer m_chronometer;
+    long        m_lastPause = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,11 +23,13 @@ public class HomeActivity extends AppCompatActivity implements IRequestHandler {
 
         toggleAlarm.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                //TODO fix the chronometer. Itcrashes the app if we hit the Break Toggle Button for now
-                if (isChecked) {
+                if (!isChecked) {
                     m_chronometer.start();
+                    if (m_lastPause != 0)
+                        m_chronometer.setBase(SystemClock.elapsedRealtime() + m_lastPause);
                 }
                 else {
+                    m_lastPause = m_chronometer.getBase() - SystemClock.elapsedRealtime();
                     m_chronometer.stop();
                 }
             }
