@@ -28,8 +28,6 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         }
     }
 
-    private ZXingScannerView m_scannerView;
-
     public void onClick(View v) {
         m_scannerView = new ZXingScannerView(this);
         this.setContentView(m_scannerView);
@@ -45,18 +43,8 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
 
     @Override
     public void handleResult(Result result) {
-        Log.v("handleResult", result.getText());
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Scan Result");
-        builder.setMessage(result.getText());
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
         String url = result.getText();
 
-        Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
-        startActivity(intent);
-
-        //resume scanning
         try {
             URI.create(url);
         }
