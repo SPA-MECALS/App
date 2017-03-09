@@ -23,6 +23,6 @@ android:
   licenses:
     - 'android-sdk-license-.+'
     - 'google-gdk-license-.+'
-    - 'android-sdk-build-tools-.+'
+    - 'android-sdk-buildtools-.+'
     - 'android-sdk-platform-.+'
     
