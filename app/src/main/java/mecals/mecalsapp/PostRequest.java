@@ -22,9 +22,12 @@ public class PostRequest extends HttpAsync {
 
         try {
             HttpURLConnection httpConnection = this.createConnection(request.getUrl());
-            httpConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            httpConnection.setRequestProperty("Content-Type", "application/json");
+            //if (API.getInstance().hasToken(this.getApplicationContext())) {
+                //httpConnection.setRequestProperty("Autorization", API.getInstance().getToken(this.getApplicationContext()));
+            //}
             OutputStream output = httpConnection.getOutputStream();
-            output.write(request.encodedParameters().getBytes());
+            output.write(request.jsonParameters().toString().getBytes());
             return (this.createResponse(httpConnection));
         }
         catch (Exception e){

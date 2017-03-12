@@ -2,6 +2,8 @@ package mecals.mecalsapp;
 
 import android.util.Log;
 
+import org.json.JSONObject;
+
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.net.URLEncoder;
@@ -48,5 +50,9 @@ public class HttpRequest {
             Log.e("HttpRequest", e.getMessage(), e.getCause());
         }
         return (encoded);
+    }
+
+    public JSONObject jsonParameters() {
+        return new JSONObject(m_parameters);
     }
 }
