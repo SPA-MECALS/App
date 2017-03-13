@@ -3,6 +3,8 @@ package mecals.mecalsapp;
 import android.app.Activity;
 import android.util.Log;
 
+import org.json.JSONObject;
+
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 
@@ -19,6 +21,7 @@ public class PostRequest extends HttpAsync {
     @Override
     protected HttpResponse doInBackground(HttpRequest... requests) {
         HttpRequest request = requests[0];
+        JSONObject param;
 
         try {
             HttpURLConnection httpConnection = this.createConnection(request.getUrl());
@@ -26,8 +29,11 @@ public class PostRequest extends HttpAsync {
             //if (API.getInstance().hasToken(this.getApplicationContext())) {
                 //httpConnection.setRequestProperty("Autorization", API.getInstance().getToken(this.getApplicationContext()));
             //}
-            OutputStream output = httpConnection.getOutputStream();
-            output.write(request.jsonParameters().toString().getBytes());
+            param = request.jsonParameters();
+            if (param != null) {
+                OutputStream output = httpConnection.getOutputStream();
+                output.write(param.toString().getBytes());
+            }
             return (this.createResponse(httpConnection));
         }
         catch (Exception e){

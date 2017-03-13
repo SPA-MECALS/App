@@ -24,7 +24,7 @@ public class LoginActivity extends AppCompatActivity implements IRequestHandler 
                 String password = ((EditText) findViewById(R.id.insertPass)).getText().toString();
 
                 if (login.length() > 0 && password.length() > 0) {
-                    API.getInstance().signIn(LoginActivity.this, login, password);
+                    API.getInstance().login(LoginActivity.this, login, password);
                 }
                 else {
                     Toast.makeText(getApplicationContext(), Constants.ERR_NO_CREDENTIALS, Toast.LENGTH_SHORT).show();

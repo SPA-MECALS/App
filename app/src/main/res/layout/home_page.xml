@@ -99,7 +99,7 @@
         android:layout_toEndOf="@+id/stopTimeText"/>
 
     <TextView
-        android:text="C13"
+        android:text="Nordica"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/workstationNameTag"
@@ -123,7 +123,7 @@
         android:id="@+id/supervizorName" />
 
     <TextView
-        android:text="Criss P. Bacon"
+        android:text="John Deuf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/partnerNameTag"
@@ -133,9 +133,9 @@
     <Spinner
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:id="@+id/spinner2"
         android:layout_alignTop="@+id/changeRoleTag"
-        android:layout_toEndOf="@+id/changeRoleTag"
-        android:id="@+id/spinner2" />
+        android:layout_toEndOf="@+id/changeRoleTag" />
 
     <!--android:layout_above="@+id/signoutButton"-->
 
@@ -143,28 +143,37 @@
         android:text="ToggleButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/logoutButton"
-        android:layout_below="@+id/spinner2"
         android:id="@+id/toggleButton1"
         android:onClick="onBreak"
         android:textOff="Break"
         android:textOn="Resume"
-        android:layout_marginTop="28dp"
-        android:layout_alignStart="@+id/logoutButton"
+        android:layout_marginTop="45dp"
         android:textColor="@android:color/background_light"
-        android:background="@color/colorPrimary" />
+        android:background="@color/colorPrimary"
+        android:layout_below="@+id/spinner2"
+        android:layout_toEndOf="@+id/stopTimeText" />
+
+    <Button
+        android:text="Change role"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onRoleChange"
+        android:id="@+id/changeRoleButton"
+        android:textColor="@android:color/background_light"
+        android:background="@color/colorPrimary"
+        android:layout_above="@+id/logoutButton"
+        android:layout_toEndOf="@+id/shiftName" />
 
     <Button
         android:text="Logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:onClick="onLogout"
-        android:layout_marginTop="30dp"
         android:id="@+id/logoutButton"
         android:textColor="@android:color/background_light"
+        android:background="@color/colorPrimary"
         android:layout_below="@+id/toggleButton1"
-        android:layout_alignEnd="@+id/chronometer1"
-        android:background="@color/colorPrimary" />
+        android:layout_toEndOf="@+id/separate"
+        android:layout_marginTop="27dp" />
 
 </RelativeLayout>

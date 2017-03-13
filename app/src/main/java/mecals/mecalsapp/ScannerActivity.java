@@ -54,13 +54,8 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
             return;
         }
         API.getInstance().setUrl(url);
-        if (API.getInstance().hasToken(this.getApplicationContext())) {
-            API.getInstance().login(this);
-        }
-        else {
-            Intent intent = new Intent(this.getApplicationContext(), LoginActivity.class);
-            this.startActivity(intent);
-        }
+        Intent intent = new Intent(this.getApplicationContext(), LoginActivity.class);
+        this.startActivity(intent);
         m_scannerView.resumeCameraPreview(this);
     }
 

@@ -47,25 +47,32 @@ public class API {
         return (context.getSharedPreferences(API.TOKEN, Context.MODE_PRIVATE).getString(API.TOKEN, null));
     }
 
-    public void signIn(IRequestHandler handler, String login, String password) {
+    public void login(IRequestHandler handler, String login, String password) {
         HashMap<String, String> parameters = new HashMap<>();
 
         if (m_url == null)
             throw new NullPointerException();
-        parameters.put("login", login);
+        parameters.put("email", login);
         parameters.put("password", password); //TODO Encrypt password
-        new PostRequest(handler, Route.SIGN_IN).execute(new HttpRequest(m_url + "/signIn", parameters));
+        new PostRequest(handler, Route.LOGIN).execute(new HttpRequest(m_url + "/login", parameters));
     }
 
-    public void login(IRequestHandler handler) {
+    public void logout(IRequestHandler handler, String user_id, String workstation_id, String facility_pub_id) {
+        HashMap<String, String> parameters = new HashMap<>();
+
         if (m_url == null)
             throw new NullPointerException();
-        new GetRequest(handler, Route.LOGIN).execute(new HttpRequest(m_url + "/login"));
+        parameters.put("user_id", user_id);
+        parameters.put("workstation_id", workstation_id);
+        parameters.put("facility_pub_id", facility_pub_id);
+        new PostRequest(handler, Route.LOGOUT).execute(new HttpRequest(m_url + "/logout", parameters));
     }
 
-    public void logout(IRequestHandler handler) {
+    public void changeRole(IRequestHandler handler, String role) {
+        HashMap<String, String> parameters = new HashMap<>();
         if (m_url == null)
             throw new NullPointerException();
-        new GetRequest(handler, Route.LOGOUT).execute(new HttpRequest(m_url + "/logout"));
+        parameters.put("role", role);
+        new PostRequest(handler, Route.CHANGE_ROLE).execute(new HttpRequest(m_url + "/roleChange", parameters));
     }
 }

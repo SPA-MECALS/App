@@ -53,6 +53,8 @@ public class HttpRequest {
     }
 
     public JSONObject jsonParameters() {
-        return new JSONObject(m_parameters);
+        if (m_parameters != null)
+            return new JSONObject(m_parameters);
+        return null;
     }
 }
