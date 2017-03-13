@@ -26,4 +26,7 @@ android:
     - 'android-sdk-build-tools-.+'
     - 'build-tools-.+'
     - 'android-sdk-platform-.+'
+
+script:
+   - ./gradlew clean assembleDebug test lint
     
