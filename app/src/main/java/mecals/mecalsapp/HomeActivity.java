@@ -7,24 +7,25 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Chronometer;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
-
-import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity implements IRequestHandler {
 
     Chronometer m_chronometer;
     Spinner spinner;
     long m_lastPause = 0;
-
+    User user = User.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TextView user_name;
+        TextView facility_name;
+        TextView worstation;
 
         setContentView(R.layout.home_page);
 
@@ -49,10 +50,16 @@ public class HomeActivity extends AppCompatActivity implements IRequestHandler {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.atco_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+
+        user_name = (TextView) findViewById(R.id.user_name);
+        user_name.setText(user.getFirstName() + " " + user.getName());
+
+        facility_name = (TextView) findViewById(R.id.facility_name);
+        facility_name.setText(user.getFacilityName());
     }
 
     public void onLogout(View view) {
-        API.getInstance().logout(this, "be7cf567591", "dd4850b04e3", "d53524a0330");
+        MecalsController.getInstance().logout(this, user.getPubId(), "dd4850b04e3", user.getFacilityPubId());
     }
 
     public void onBreak(View view){
@@ -61,7 +68,7 @@ public class HomeActivity extends AppCompatActivity implements IRequestHandler {
 
     public void onRoleChange(View view) {
         String role = spinner.getSelectedItem().toString();
-        API.getInstance().changeRole(HomeActivity.this, role);
+        MecalsController.getInstance().changeRole(HomeActivity.this, role);
     }
 
     public void onRequest(HttpResponse response, int identifier) {

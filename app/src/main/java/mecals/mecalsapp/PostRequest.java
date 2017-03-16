@@ -26,8 +26,8 @@ public class PostRequest extends HttpAsync {
         try {
             HttpURLConnection httpConnection = this.createConnection(request.getUrl());
             httpConnection.setRequestProperty("Content-Type", "application/json");
-            //if (API.getInstance().hasToken(this.getApplicationContext())) {
-                //httpConnection.setRequestProperty("Autorization", API.getInstance().getToken(this.getApplicationContext()));
+            //if (MecalsController.getInstance().hasToken(this.getApplicationContext())) {
+                //httpConnection.setRequestProperty("Autorization", MecalsController.getInstance().getToken(this.getApplicationContext()));
             //}
             param = request.jsonParameters();
             if (param != null) {

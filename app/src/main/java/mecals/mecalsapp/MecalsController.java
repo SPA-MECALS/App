@@ -8,19 +8,19 @@ import java.util.HashMap;
  * Created by Théo on 07/02/2017.
  */
 
-public class API {
-    private static API m_instance = null;
+public class MecalsController {
+    private static MecalsController m_instance = null;
     private static final String TOKEN = "token";
 
     private String m_url = null;
 
-    protected API() {
+    protected MecalsController() {
         //Avoid default instantiation
     }
 
-    public static API getInstance() {
+    public static MecalsController getInstance() {
         if (m_instance == null) {
-            m_instance = new API();
+            m_instance = new MecalsController();
         }
         return (m_instance);
     }
@@ -34,17 +34,17 @@ public class API {
     }
 
     public void addToken(Context context, String token) {
-        SharedPreferences.Editor edit = context.getSharedPreferences(API.TOKEN, Context.MODE_PRIVATE).edit();
-        edit.putString(API.TOKEN, token);
+        SharedPreferences.Editor edit = context.getSharedPreferences(MecalsController.TOKEN, Context.MODE_PRIVATE).edit();
+        edit.putString(MecalsController.TOKEN, token);
         edit.commit();
     }
 
     public boolean hasToken(Context context) {
-        return (context.getSharedPreferences(API.TOKEN, Context.MODE_PRIVATE).contains(API.TOKEN));
+        return (context.getSharedPreferences(MecalsController.TOKEN, Context.MODE_PRIVATE).contains(MecalsController.TOKEN));
     }
 
     public String getToken(Context context) {
-        return (context.getSharedPreferences(API.TOKEN, Context.MODE_PRIVATE).getString(API.TOKEN, null));
+        return (context.getSharedPreferences(MecalsController.TOKEN, Context.MODE_PRIVATE).getString(MecalsController.TOKEN, null));
     }
 
     public void login(IRequestHandler handler, String login, String password) {

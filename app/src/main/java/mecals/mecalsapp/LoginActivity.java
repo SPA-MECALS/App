@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
 public class LoginActivity extends AppCompatActivity implements IRequestHandler {
 
     @Override
@@ -24,7 +26,7 @@ public class LoginActivity extends AppCompatActivity implements IRequestHandler 
                 String password = ((EditText) findViewById(R.id.insertPass)).getText().toString();
 
                 if (login.length() > 0 && password.length() > 0) {
-                    API.getInstance().login(LoginActivity.this, login, password);
+                    MecalsController.getInstance().login(LoginActivity.this, login, password);
                 }
                 else {
                     Toast.makeText(getApplicationContext(), Constants.ERR_NO_CREDENTIALS, Toast.LENGTH_SHORT).show();
@@ -40,8 +42,15 @@ public class LoginActivity extends AppCompatActivity implements IRequestHandler 
         }
         switch (response.getStatus()) {
             case 200:
-                //TODO Save token rather than entiere content :)
-                API.getInstance().addToken(this.getApplicationContext(), response.getContent());
+                //TODO Save token rather than entiere content
+                MecalsController.getInstance().addToken(this.getApplicationContext(), response.getContent());
+                try {
+                    JSONObject resp = new JSONObject(response.getContent().replace("[", "").replace("]", ""));
+                    User.getInstance().setUserData(resp);
+                } catch (Exception e) {
+                    Toast.makeText(this.getApplicationContext(), "Parsing faillure", Toast.LENGTH_SHORT).show();
+                    break;
+                }
                 Intent intent = new Intent(this.getApplicationContext(), HomeActivity.class);
                 this.startActivity(intent);
                 break;

@@ -7,70 +7,60 @@
         android:text="Time : "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="30dp"
         android:layout_marginTop="40dp"
         android:id="@+id/timeTag"
-        android:textColor="@android:color/background_light" />
+        android:textColor="@android:color/background_light"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/nameTag" />
 
     <TextView
-        android:text="Workstation : "
+        android:text="Name : "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:id="@+id/workstationNameTag"
+        android:layout_marginTop="40dp"
+        android:id="@+id/nameTag"
+        android:textColor="@android:color/background_light"
         android:layout_below="@+id/timeTag"
-        android:layout_alignStart="@+id/timeTag"
-        android:textColor="@android:color/background_light" />
+        android:layout_toStartOf="@+id/startTimeText" />
 
     <TextView
-        android:text="Shift : "
+        android:text="Facility : "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:id="@+id/shiftNameTag"
-        android:layout_below="@+id/workstationNameTag"
-        android:layout_alignStart="@+id/workstationNameTag"
-        android:textColor="@android:color/background_light" />
-
-    <TextView
-        android:text="Supervizor : "
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:id="@+id/supervizorNameTag"
-        android:layout_below="@+id/shiftNameTag"
-        android:layout_alignStart="@+id/shiftNameTag"
-        android:textColor="@android:color/background_light" />
-
-    <TextView
-        android:text="Partner : "
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:id="@+id/partnerNameTag"
-        android:layout_below="@+id/supervizorNameTag"
-        android:layout_alignStart="@+id/supervizorNameTag"
-        android:textColor="@android:color/background_light" />
+        android:layout_marginTop="40dp"
+        android:id="@+id/facilityTag"
+        android:textColor="@android:color/background_light"
+        android:layout_below="@+id/nameTag"
+        android:layout_alignStart="@+id/nameTag" />
 
     <TextView
         android:text="Change role : "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/partnerNameTag"
-        android:layout_alignStart="@+id/timeTag"
-        android:layout_marginTop="30dp"
         android:id="@+id/changeRoleTag"
-        android:textColor="@android:color/background_light" />
+        android:textColor="@android:color/background_light"
+        android:layout_marginTop="44dp"
+        android:layout_below="@+id/workstationTag"
+        android:layout_alignStart="@+id/facilityTag" />
+
+    <TextView
+        android:text="Workstation : "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/workstationTag"
+        android:textColor="@android:color/background_light"
+        android:layout_below="@+id/facilityTag"
+        android:layout_marginTop="40dp"
+        android:layout_toStartOf="@+id/spinner2" />
 
     <TextView
         android:text="Start_Shift"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/startTimeText"
-        android:layout_marginTop="40dp"
-        android:layout_toEndOf="@+id/timeTag" />
+        android:layout_alignBaseline="@+id/timeTag"
+        android:layout_alignBottom="@+id/timeTag"
+        android:layout_toStartOf="@+id/logoutButton" />
 
     <TextView
         android:text="-"
@@ -94,41 +84,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/chronometer1"
-        android:layout_marginStart="15dp"
+        android:layout_alignBaseline="@+id/stopTimeText"
         android:layout_alignBottom="@+id/stopTimeText"
-        android:layout_toEndOf="@+id/stopTimeText"/>
+        android:layout_toEndOf="@+id/logoutButton" />
 
     <TextView
-        android:text="Nordica"
+        android:text="None"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/workstationNameTag"
-        android:layout_toEndOf="@+id/workstationNameTag"
-        android:id="@+id/workstationName" />
+        android:id="@+id/user_name"
+        android:layout_above="@+id/facilityTag"
+        android:layout_alignEnd="@+id/stopTimeText" />
 
     <TextView
-        android:text="2"
+        android:text="None"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/supervizorNameTag"
-        android:layout_toEndOf="@+id/shiftNameTag"
-        android:id="@+id/shiftName" />
+        android:id="@+id/facility_name"
+        android:layout_alignBaseline="@+id/facilityTag"
+        android:layout_alignBottom="@+id/facilityTag"
+        android:layout_alignStart="@+id/user_name" />
 
     <TextView
-        android:text="Dick Weiner"
+        android:text="None"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/supervizorNameTag"
-        android:layout_toEndOf="@+id/supervizorNameTag"
-        android:id="@+id/supervizorName" />
-
-    <TextView
-        android:text="John Deuf"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/partnerNameTag"
-        android:layout_toEndOf="@+id/partnerNameTag"
-        android:id="@+id/textView5" />
+        android:id="@+id/workstation_name"
+        android:layout_alignBaseline="@+id/workstationTag"
+        android:layout_alignBottom="@+id/workstationTag"
+        android:layout_alignStart="@+id/facility_name" />
 
     <Spinner
         android:layout_width="200dp"
@@ -147,10 +131,10 @@
         android:onClick="onBreak"
         android:textOff="Break"
         android:textOn="Resume"
-        android:layout_marginTop="45dp"
         android:textColor="@android:color/background_light"
         android:background="@color/colorPrimary"
-        android:layout_below="@+id/spinner2"
+        android:layout_alignBaseline="@+id/changeRoleButton"
+        android:layout_alignBottom="@+id/changeRoleButton"
         android:layout_toEndOf="@+id/stopTimeText" />
 
     <Button
@@ -161,8 +145,9 @@
         android:id="@+id/changeRoleButton"
         android:textColor="@android:color/background_light"
         android:background="@color/colorPrimary"
+        android:layout_marginBottom="28dp"
         android:layout_above="@+id/logoutButton"
-        android:layout_toEndOf="@+id/shiftName" />
+        android:layout_toStartOf="@+id/separate" />
 
     <Button
         android:text="Logout"
@@ -172,8 +157,8 @@
         android:id="@+id/logoutButton"
         android:textColor="@android:color/background_light"
         android:background="@color/colorPrimary"
-        android:layout_below="@+id/toggleButton1"
-        android:layout_toEndOf="@+id/separate"
-        android:layout_marginTop="27dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="42dp" />
 
 </RelativeLayout>
